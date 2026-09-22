@@ -2,8 +2,8 @@ import os
 import httpx
 
 class SlackClient:
-    def __init__(self):
-        self.webhook_url = os.getenv("SLACK_WEBHOOK_URL")
+    def __init__(self, webhook_url: str | None = None):
+        self.webhook_url = webhook_url
 
     def send_notification(self, title: str, summary: str, clips: list, social_posts: dict) -> str:
         """Sends a rich Block Kit message to Slack."""
@@ -77,4 +77,3 @@ class SlackClient:
             return "Successfully sent Slack notification!"
         except Exception as e:
             return f"Error sending Slack notification: {e}"
-

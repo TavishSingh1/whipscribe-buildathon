@@ -2,9 +2,9 @@ import os
 from notion_client import Client
 
 class NotionClient:
-    def __init__(self):
-        self.api_key = os.getenv("NOTION_API_KEY")
-        self.database_id = os.getenv("NOTION_DATABASE_ID")
+    def __init__(self, api_key: str | None = None, database_id: str | None = None):
+        self.api_key = api_key
+        self.database_id = database_id
         
         if self.api_key and self.database_id:
             self.client = Client(auth=self.api_key)
@@ -67,4 +67,3 @@ class NotionClient:
             return f"Successfully pushed to Notion! Page ID: {response['id']}"
         except Exception as e:
             return f"Error pushing to Notion: {e}"
-

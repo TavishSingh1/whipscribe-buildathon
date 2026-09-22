@@ -1,6 +1,6 @@
-.env
-__pycache__/
-.venv/
+backend/uploads/
+backend/*.db
+backend/.pytest_cache/
+frontend/dist/
 output/
-*.mp4
-*.mp3
+src/__pycache__/

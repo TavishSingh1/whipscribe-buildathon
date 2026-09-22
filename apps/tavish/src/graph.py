@@ -158,29 +158,7 @@ async def generate_show_notes_node(state: PodcastState) -> dict:
 
 
 async def publish_results_node(state: PodcastState) -> dict:
-    """Push results to Notion and send a Slack notification."""
-    if state.get("errors"):
-        return {}
-
-    from .notion_client import NotionClient
-    from .slack_client import SlackClient
-
-    title = os.path.basename(state.get("audio_path", "Podcast Episode"))
-    summary = state.get("episode_summary", "")
-    chapters = state.get("chapters", [])
-    social_posts = state.get("social_posts", {})
-    clips = state.get("clips", [])
-
-    # 1. Push to Notion
-    notion = NotionClient()
-    notion_msg = notion.push_episode(title, summary, chapters, social_posts, clips)
-    print(notion_msg)
-
-    # 2. Send Slack notification
-    slack = SlackClient()
-    slack_msg = slack.send_notification(title, summary, clips, social_posts)
-    print(slack_msg)
-
+    """Legacy no-op. Production publishing is user-scoped in backend integrations."""
     return {}
 
 
